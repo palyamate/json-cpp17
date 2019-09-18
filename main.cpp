@@ -9,7 +9,9 @@ int main() {
     j["numbers"][4] = 12.0;
     j["boolean"] = true;
     j["null"];
+    j["key"]["a"] = 1;
+    j["key"]["b"] = 2;
     stringifier s;
-    std::cout << s.stringify(j);
+    std::cout << s.prettify(j);
     return 0;
 }
