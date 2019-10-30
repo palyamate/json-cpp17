@@ -6,6 +6,7 @@
 #define JSON_CPP17_JSONVAR_H
 
 #include <variant>
+#include <algorithm>
 #include "json_fwd.h"
 
 template <template<class, class, class...> class Object,
@@ -47,6 +48,16 @@ public:
     jsonvar(T u) noexcept : var(std::in_place_type<uint_t>, u) { }
 
     jsonvar(bool_t b) noexcept : var(b) { }
+
+    jsonvar(std::initializer_list<jsonvar&>& list) {
+        if (std::all_of(std::begin(list), std::end(list), [](jsonvar& j) {
+            return j->is_array() && j->template get<array_t>().size() == 2 && j->template get<array_t>()[0].is_string();
+        })) {
+
+        } else {
+            var = array_t(std::begin(list), std::end(list));
+        }
+    }
 
     jsonvar(const jsonvar&) = default;
     jsonvar& operator=(const jsonvar&) = default;
