@@ -3,6 +3,7 @@
 
 
 #include "jsonListener.h"
+#include "jsonVisitor.h"
 
 #include "jsonParser.h"
 
@@ -56,6 +57,14 @@ void jsonParser::JsonContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<jsonListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitJson(this);
+}
+
+
+antlrcpp::Any jsonParser::JsonContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<jsonVisitor*>(visitor))
+    return parserVisitor->visitJson(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 jsonParser::JsonContext* jsonParser::json() {
@@ -125,6 +134,14 @@ void jsonParser::ValueContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<jsonListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitValue(this);
+}
+
+
+antlrcpp::Any jsonParser::ValueContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<jsonVisitor*>(visitor))
+    return parserVisitor->visitValue(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 jsonParser::ValueContext* jsonParser::value() {
@@ -233,6 +250,14 @@ void jsonParser::ObjectContext::exitRule(tree::ParseTreeListener *listener) {
     parserListener->exitObject(this);
 }
 
+
+antlrcpp::Any jsonParser::ObjectContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<jsonVisitor*>(visitor))
+    return parserVisitor->visitObject(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 jsonParser::ObjectContext* jsonParser::object() {
   ObjectContext *_localctx = _tracker.createInstance<ObjectContext>(_ctx, getState());
   enterRule(_localctx, 4, jsonParser::RuleObject);
@@ -305,6 +330,14 @@ void jsonParser::MembersContext::exitRule(tree::ParseTreeListener *listener) {
     parserListener->exitMembers(this);
 }
 
+
+antlrcpp::Any jsonParser::MembersContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<jsonVisitor*>(visitor))
+    return parserVisitor->visitMembers(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 jsonParser::MembersContext* jsonParser::members() {
   MembersContext *_localctx = _tracker.createInstance<MembersContext>(_ctx, getState());
   enterRule(_localctx, 6, jsonParser::RuleMembers);
@@ -375,6 +408,14 @@ void jsonParser::MemberContext::exitRule(tree::ParseTreeListener *listener) {
     parserListener->exitMember(this);
 }
 
+
+antlrcpp::Any jsonParser::MemberContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<jsonVisitor*>(visitor))
+    return parserVisitor->visitMember(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 jsonParser::MemberContext* jsonParser::member() {
   MemberContext *_localctx = _tracker.createInstance<MemberContext>(_ctx, getState());
   enterRule(_localctx, 8, jsonParser::RuleMember);
@@ -434,6 +475,14 @@ void jsonParser::ArrayContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<jsonListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitArray(this);
+}
+
+
+antlrcpp::Any jsonParser::ArrayContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<jsonVisitor*>(visitor))
+    return parserVisitor->visitArray(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 jsonParser::ArrayContext* jsonParser::array() {
@@ -518,6 +567,14 @@ void jsonParser::ElementsContext::exitRule(tree::ParseTreeListener *listener) {
     parserListener->exitElements(this);
 }
 
+
+antlrcpp::Any jsonParser::ElementsContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<jsonVisitor*>(visitor))
+    return parserVisitor->visitElements(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 jsonParser::ElementsContext* jsonParser::elements() {
   ElementsContext *_localctx = _tracker.createInstance<ElementsContext>(_ctx, getState());
   enterRule(_localctx, 12, jsonParser::RuleElements);
@@ -580,6 +637,14 @@ void jsonParser::ElementContext::exitRule(tree::ParseTreeListener *listener) {
     parserListener->exitElement(this);
 }
 
+
+antlrcpp::Any jsonParser::ElementContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<jsonVisitor*>(visitor))
+    return parserVisitor->visitElement(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 jsonParser::ElementContext* jsonParser::element() {
   ElementContext *_localctx = _tracker.createInstance<ElementContext>(_ctx, getState());
   enterRule(_localctx, 14, jsonParser::RuleElement);
@@ -637,6 +702,14 @@ void jsonParser::StringContext::exitRule(tree::ParseTreeListener *listener) {
     parserListener->exitString(this);
 }
 
+
+antlrcpp::Any jsonParser::StringContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<jsonVisitor*>(visitor))
+    return parserVisitor->visitString(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 jsonParser::StringContext* jsonParser::string() {
   StringContext *_localctx = _tracker.createInstance<StringContext>(_ctx, getState());
   enterRule(_localctx, 16, jsonParser::RuleString);
@@ -692,6 +765,14 @@ void jsonParser::CharactersContext::exitRule(tree::ParseTreeListener *listener) 
   auto parserListener = dynamic_cast<jsonListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitCharacters(this);
+}
+
+
+antlrcpp::Any jsonParser::CharactersContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<jsonVisitor*>(visitor))
+    return parserVisitor->visitCharacters(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 jsonParser::CharactersContext* jsonParser::characters() {
@@ -770,6 +851,14 @@ void jsonParser::CharacterContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<jsonListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitCharacter(this);
+}
+
+
+antlrcpp::Any jsonParser::CharacterContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<jsonVisitor*>(visitor))
+    return parserVisitor->visitCharacter(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 jsonParser::CharacterContext* jsonParser::character() {
@@ -864,6 +953,14 @@ void jsonParser::EscapeContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<jsonListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitEscape(this);
+}
+
+
+antlrcpp::Any jsonParser::EscapeContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<jsonVisitor*>(visitor))
+    return parserVisitor->visitEscape(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 jsonParser::EscapeContext* jsonParser::escape() {
@@ -997,6 +1094,14 @@ void jsonParser::NumberContext::exitRule(tree::ParseTreeListener *listener) {
     parserListener->exitNumber(this);
 }
 
+
+antlrcpp::Any jsonParser::NumberContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<jsonVisitor*>(visitor))
+    return parserVisitor->visitNumber(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 jsonParser::NumberContext* jsonParser::number() {
   NumberContext *_localctx = _tracker.createInstance<NumberContext>(_ctx, getState());
   enterRule(_localctx, 24, jsonParser::RuleNumber);
@@ -1072,6 +1177,14 @@ void jsonParser::Signed_intContext::exitRule(tree::ParseTreeListener *listener) 
     parserListener->exitSigned_int(this);
 }
 
+
+antlrcpp::Any jsonParser::Signed_intContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<jsonVisitor*>(visitor))
+    return parserVisitor->visitSigned_int(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 jsonParser::Signed_intContext* jsonParser::signed_int() {
   Signed_intContext *_localctx = _tracker.createInstance<Signed_intContext>(_ctx, getState());
   enterRule(_localctx, 26, jsonParser::RuleSigned_int);
@@ -1137,6 +1250,14 @@ void jsonParser::Unsigned_intContext::exitRule(tree::ParseTreeListener *listener
   auto parserListener = dynamic_cast<jsonListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitUnsigned_int(this);
+}
+
+
+antlrcpp::Any jsonParser::Unsigned_intContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<jsonVisitor*>(visitor))
+    return parserVisitor->visitUnsigned_int(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 jsonParser::Unsigned_intContext* jsonParser::unsigned_int() {
@@ -1253,6 +1374,14 @@ void jsonParser::RealContext::exitRule(tree::ParseTreeListener *listener) {
     parserListener->exitReal(this);
 }
 
+
+antlrcpp::Any jsonParser::RealContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<jsonVisitor*>(visitor))
+    return parserVisitor->visitReal(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 jsonParser::RealContext* jsonParser::real() {
   RealContext *_localctx = _tracker.createInstance<RealContext>(_ctx, getState());
   enterRule(_localctx, 30, jsonParser::RuleReal);
@@ -1365,6 +1494,14 @@ void jsonParser::Bool_valContext::exitRule(tree::ParseTreeListener *listener) {
     parserListener->exitBool_val(this);
 }
 
+
+antlrcpp::Any jsonParser::Bool_valContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<jsonVisitor*>(visitor))
+    return parserVisitor->visitBool_val(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 jsonParser::Bool_valContext* jsonParser::bool_val() {
   Bool_valContext *_localctx = _tracker.createInstance<Bool_valContext>(_ctx, getState());
   enterRule(_localctx, 32, jsonParser::RuleBool_val);
@@ -1422,6 +1559,14 @@ void jsonParser::Null_valueContext::exitRule(tree::ParseTreeListener *listener) 
   auto parserListener = dynamic_cast<jsonListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitNull_value(this);
+}
+
+
+antlrcpp::Any jsonParser::Null_valueContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<jsonVisitor*>(visitor))
+    return parserVisitor->visitNull_value(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 jsonParser::Null_valueContext* jsonParser::null_value() {
